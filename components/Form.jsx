@@ -1,17 +1,26 @@
 import { Email, LockOutlined, PersonOutline } from "@mui/icons-material";
 import Link from "next/link";
 import React from "react";
+import { useForm } from "react-hook-form";
 
 const Form = ({ type }) => {
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm()
   return (
     <div className="auth">
       <div className="content">
         <img src="/assets/logo.png" alt="logo" className="logo" />
-        {console.log(type)}
+  
         <form className="form">
           {type === "register" && (
             <div className="input">
               <input
+              {...register("username"), {required: "Username is required"}}
                 type="text"
                 placeholder="Username"
                 className="input-field "
