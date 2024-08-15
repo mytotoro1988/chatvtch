@@ -9,9 +9,9 @@ export const connectToDB = async () => {
   }
   try {
     await mongoose.connect(process.env.MONGODB_URL, {
-      dbName: "VTCH CHAT",
+      dbName: "VTCHCHAT",
       useNewUrlParser: true,
-      uneUnifiedTopology: true,
+      useUnifiedTopology: true,
     });
     isConnected = true;
     console.log("mongose db is connected");
