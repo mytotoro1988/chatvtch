@@ -1,4 +1,8 @@
 "use client";
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7bbe5e3f4bcf799b525bc99efec251b7e47947eb
 import {
   EmailOutlined,
   LockOutlined,
@@ -6,8 +10,13 @@ import {
 } from "@mui/icons-material";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+<<<<<<< HEAD
 import React from "react";
+=======
+>>>>>>> 7bbe5e3f4bcf799b525bc99efec251b7e47947eb
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { signIn } from "next-auth/react";
 
 const Form = ({ type }) => {
   const {
@@ -20,6 +29,7 @@ const Form = ({ type }) => {
   const router = useRouter();
 
   const onSubmit = async (data) => {
+<<<<<<< HEAD
     console.log("submit");
 
     if (type === "register") {
@@ -31,11 +41,46 @@ const Form = ({ type }) => {
       if (res.ok) {
         router.push("/");
       }
+=======
+    if (type === "register") {
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (res.ok) {
+        router.push("/");
+      }
+
+>>>>>>> 7bbe5e3f4bcf799b525bc99efec251b7e47947eb
       if (res.error) {
         toast.error("Something went wrong");
       }
     }
+<<<<<<< HEAD
   };
+=======
+
+    if (type === "login") {
+      const res = await signIn("credentials", {
+        ...data,
+        redirect: false,
+      });
+
+      if (res.ok) {
+        router.push("/chats");
+      }
+
+      if (res.error) {
+        toast.error("Invalid email or password");
+      }
+    }
+  };
+
+>>>>>>> 7bbe5e3f4bcf799b525bc99efec251b7e47947eb
   return (
     <div className="auth">
       <div className="content">
@@ -61,7 +106,10 @@ const Form = ({ type }) => {
                 />
                 <PersonOutline sx={{ color: "#737373" }} />
               </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7bbe5e3f4bcf799b525bc99efec251b7e47947eb
               {errors.username && (
                 <p className="text-red-500">{errors.username.message}</p>
               )}
@@ -109,17 +157,19 @@ const Form = ({ type }) => {
               <p className="text-red-500">{errors.password.message}</p>
             )}
           </div>
+
           <button className="button" type="submit">
-            {type == "register" ? "Join free" : "Let's chat"}
+            {type === "register" ? "Join Free" : "Let's Chat"}
           </button>
         </form>
+
         {type === "register" ? (
           <Link href="/" className="link">
             <p className="text-center">Already have an account? Sign In Here</p>
           </Link>
         ) : (
           <Link href="/register" className="link">
-            <p className="text-center">Don't have account ? Register Here</p>
+            <p className="text-center">Don't have an account? Register Here</p>
           </Link>
         )}
       </div>
